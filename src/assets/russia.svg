@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="russia" width="512" height="512" version="1.1">
+  <defs id="defs4410">
+    <clipPath id="clipPath3146" clipPathUnits="userSpaceOnUse">
+      <path id="path3148" d="m -479.99183,20.215956 a 156.8,156.8 0 1 1 -0.008,1.602218" style="fill:#579bd3;fill-opacity:1;stroke:none" transform="matrix(1.49937 0 0 1.49937 740.133 -223.272)"></path>
+    </clipPath>
+    <clipPath id="clipPath4861" clipPathUnits="userSpaceOnUse">
+      <rect id="rect4863" width="480" height="480" x="16" y="-454.317" ry="48" style="fill:#f1c40f;fill-opacity:1;stroke:none"></rect>
+    </clipPath>
+  </defs>
+  <g id="layer1" transform="translate(0 448)">
+    <g id="g7379" clip-path="url(#clipPath4861)" transform="translate(0 22.317)">
+      <rect id="rect3220" width="160" height="480" x="-25.683" y="-496" style="fill:#e74c3c;fill-opacity:1;stroke:none" transform="scale(1 -1)rotate(90)"></rect>
+      <rect id="rect3990" width="160" height="480" x="134.317" y="-496" style="fill:#2b4896;fill-opacity:1;stroke:none" transform="scale(1 -1)rotate(90)"></rect>
+      <rect id="rect3992" width="160" height="480" x="294.317" y="-496" style="fill:#fff;fill-opacity:1;stroke:none" transform="scale(1 -1)rotate(90)"></rect>
+    </g>
+  </g>
+</svg>
