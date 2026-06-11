@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Waitlist.css";
 
-const formspreeUrl = "https://formspree.io/f/YOUR_FORM_ID";
+const formspreeUrl = "https://formspree.io/f/mkoaqgbr";
 
 function Waitlist() {
   const [email, setEmail] = useState("");

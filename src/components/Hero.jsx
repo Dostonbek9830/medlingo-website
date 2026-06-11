@@ -5,7 +5,6 @@ import "./Hero.css";
 
 function Hero() {
   const [isFlipped, setIsFlipped] = useState(false);
-  const formspreeUrl = "https://formspree.io/f/mkoaqgbr";
 
   return (
     <section className="hero" id="hero">
@@ -78,8 +77,7 @@ function Hero() {
                       aria-hidden="true"
                     />
                     <p>
-                      Это опасное для жизни состояние, при котором происходит
-                      омертвение (некроз) участка сердечной мышцы (миокарда).
+                      Инфаркт миокарда - Это опасное для жизни состояние, при котором происходит   омертвение (некроз) участка сердечной мышцы (миокарда).
                     </p>
                   </div>
 
@@ -91,12 +89,6 @@ function Hero() {
         </div>
       </div>
 
-      <form className="hero__waitlist-form" method="POST" action={formspreeUrl}>
-        <h2>Join the Waitlist</h2>
-        <p>Get early access to the platform.</p>
-        <input type="email" name="email" placeholder="Email" required />
-        <button type="submit">Join</button>
-      </form>
     </section>
   );
 }

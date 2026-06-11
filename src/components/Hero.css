@@ -67,7 +67,6 @@
   position: relative;
   width: 100%;
   max-width: 460px;
-  animation: hero-bounce 3.6s ease-in-out infinite;
 }
 
 .hero__flashcard {
@@ -213,17 +212,6 @@
   transform: rotateY(180deg) translateY(-2px);
 }
 
-@keyframes hero-bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
 @keyframes fade-in-up {
   from {
     opacity: 0;
@@ -269,18 +257,6 @@
 
   .hero__flashcard-shell {
     max-width: 100%;
-    animation-duration: 4.2s;
-  }
-
-  @keyframes hero-bounce {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-
-    50% {
-      transform: translateY(-4px);
-    }
   }
 
   .hero__flashcard-inner {
