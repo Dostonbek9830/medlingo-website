@@ -25,6 +25,7 @@ function Team() {
             tags={[
               "Data Analyst @ Yandex Market",
               "Python & SQL",
+              "Westminster International University in Tashkent",
               "Tashkent, Uzbekistan",
             ]}
             bio="Data analyst with a background in sales analytics. Fluent in Uzbek, Russian, and English. Building MedLingo to solve the medical English gap he sees in Central Asia's healthcare community."
