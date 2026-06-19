@@ -13,9 +13,8 @@ function Hero() {
           <p className="hero__eyebrow">🏥 Medical English Learning Platform</p>
           <h1>Learn Medical English Like a Clinical Professional</h1>
           <p className="hero__subheadline">
-            The first AI-powered platform combining vocabulary, reading,
-            listening, speaking, and writing for healthcare workers in your
-            language.
+           MedLingo is an AI-powered Medical English learning platform designed for Uzbek and Russian-speaking 
+           medical students and healthcare professionals.
           </p>
 
           <div className="hero__actions">
