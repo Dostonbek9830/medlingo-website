@@ -331,9 +331,6 @@
     padding-top: 120px;
     padding-bottom: 40px;
   }
-  .hero__visual {
-    order: -1;
-  }
   .hero__flashcard,
   .hero__flashcard-inner {
     min-height: 320px;
