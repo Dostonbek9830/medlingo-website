@@ -22,6 +22,9 @@
 .footer__logo {
   height: 38px;
   width: auto;
+  align-self: flex-start;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .footer__brand p {

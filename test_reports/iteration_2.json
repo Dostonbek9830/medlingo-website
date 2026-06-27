@@ -1,0 +1,45 @@
+{
+  "summary": "Iteration 2 — Regression + 2 bug fixes + multi-viewport responsive sweep on the redesigned MedLingo Vite site at http://localhost:3000. All 8 review items PASS with 0 console errors, 0 page errors. Both targeted bug fixes (footer logo stretch, back-to-top position) are correctly resolved across all tested viewports.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Waitlist perk status @ ≤390px", "issues": ["Cosmetic only: status text renders as '0\u00a0/\u00a0200 claimed· 200 left' — the middle dot has no leading space producing 'claimed·' joined. Not blocking; wraps within card as required. Main agent may add a space before · for typographic polish."]}
+    ]
+  },
+  "test_results": {
+    "BUG_FIX_1_footer_logo_aspect": "PASS — at 1440/1280/1024/768/414/390/360 the .footer__logo bbox is exactly 38x38 (aspect 1.0, diff=0). Computed alignSelf='flex-start', objectFit='contain'. No horizontal stretch.",
+    "BUG_FIX_2_back_to_top_position": "PASS — after scroll past 500px on 1440 and 390: computed position='fixed', x is near right edge (right_gap=28px @1440, 18px @390 — NOT at x=0). Click smooth-scrolls to scrollY=0 (verified on 390px).",
+    "RESPONSIVE_no_horizontal_overflow": "PASS — scrollWidth==innerWidth (diff=0) at all 7 widths: 360,390,414,768,1024,1280,1440.",
+    "RESPONSIVE_mobile_menu_390": "PASS — navbar-menu-button opens mobile-menu showing exactly ['Features','Modules','Team','Get Early Access']. theme-toggle-mobile flips data-theme (dark->light). Clicking Modules link closes menu and scrolls to #modules (scrollY=4453).",
+    "RESPONSIVE_waitlist_perk_390_360": "PASS — at 390px: card w=292, bar w=250 (no overflow, right gap 21px); status renders on 2 lines (h=43px, lh=21.5). At 360px: card w=262, bar w=220 (no overflow); status 2 lines. Bar stays inside card.",
+    "RESPONSIVE_hero_360": "PASS — title 'Learn Medical English Like a Clinical Professional' wraps cleanly; flashcard renders above title (flashcard_top=192 < title_top=627); both CTAs visible with height=54px (tap-friendly); flashcard tap toggles aria-pressed false->true.",
+    "RESPONSIVE_grid_collapse": "PASS — @360: Activities=1col, Modules=1col, Team=1col. @768: Activities=2cols, Modules=3cols, Team=1col. Matches spec.",
+    "REGRESSION_navbar_glass_on_scroll": "PASS — navbar className becomes 'navbar scrolled' after scrolling past 30px.",
+    "REGRESSION_theme_toggle_and_persistence": "PASS — desktop toggle flips light->dark, localStorage['medlingo-theme']='dark'; after reload data-theme='dark' persists.",
+    "REGRESSION_smooth_scroll_navlinks": "PASS — clicking navlink-modules smooth-scrolls #modules into view (top within 200px of 0).",
+    "REGRESSION_hero_flashcard_flip": "PASS — aria-pressed toggles false->true on click @1440 and @360.",
+    "REGRESSION_modules_phase_tabs": "PASS — modules-tab-phase1/phase2 switch works; phase2 reveals 29 lock-class nodes (lock overlay).",
+    "REGRESSION_waitlist_counter_124": "PASS — animated counter reaches exactly '124' when waitlist scrolls into view (verified after 2.8s wait).",
+    "REGRESSION_waitlist_formspree_submit": "PASS — form submits and [data-testid='waitlist-success'] becomes visible (Formspree mocked for determinism).",
+    "REGRESSION_navbar_logo_size": "PASS — navbar__logo: 44x44 @390px, 38x38 @360px (380px breakpoint active). object-fit=contain, max-width=160px.",
+    "REGRESSION_console_errors": "PASS — 0 console errors, 0 pageerrors across all viewport runs."
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Both bug fixes are surgical and correct: .app > *:not(.back-to-top) selector restores fixed positioning; .footer__logo align-self:flex-start + object-fit:contain solves the stretch in a column flex parent.",
+    "Cosmetic nit: in /app/src/components/Waitlist.jsx the new perk status string '0 / 200 claimed· 200 left' is missing a space before the middle-dot separator. Consider 'claimed · 200 left' or 'claimed • 200 left' for typographic consistency. Not blocking.",
+    "Modules grid at 768px renders 3 columns (228px each). Spec language was 'single column at the smallest' which is satisfied at 360px (1 col). The 3-col at 768 is a deliberate design choice — flag only if main agent wants a tablet 2-col breakpoint.",
+    "Counter animation works as designed but relies on IntersectionObserver firing exactly once; if user scrolls past quickly during slow network, the 124 final value may not animate. Pre-existing behavior, not a regression."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (frontend-only)", "frontend": "100%"},
+  "test_credentials": "none required",
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Vite dev server at http://localhost:3000 (no /app/frontend; project root is /app). No backend. Mock https://formspree.io/** for deterministic waitlist tests. Theme key: localStorage['medlingo-theme']. Mobile breakpoint = 860px; extra-small breakpoint = 380px (navbar logo shrinks). When clicking [data-testid='back-to-top'] use force=True because of the gentle bounce animation (Playwright considers it 'not stable'). Footer logo expected dimensions: 38x38 square at every viewport.",
+  "rca of the issue": "No new issues. Bug-fix RCA confirmed: (1) Back-to-top was previously trapped under '.app > *' rule that forces position:relative — the new ':not(.back-to-top)' carve-out lets the button keep position:fixed. (2) Footer logo was a flex item in a column flex parent (footer__brand) where the implicit cross-axis stretch was making the square 1024x1024 PNG render full-width; align-self:flex-start + object-fit:contain + flex-shrink:0 fixes it. Both fixes verified across 7 viewports."
+}

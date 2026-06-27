@@ -35,6 +35,8 @@
 .navbar__logo {
   height: 44px;
   width: auto;
+  max-width: 160px;
+  object-fit: contain;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -219,5 +221,14 @@
   }
   .navbar__mobile-controls {
     display: inline-flex;
+  }
+}
+
+@media (max-width: 380px) {
+  .navbar__logo {
+    height: 38px;
+  }
+  .navbar__inner {
+    gap: 12px;
   }
 }

@@ -82,8 +82,8 @@ function Waitlist() {
                 </p>
                 <p className="waitlist__perk-sub" data-testid="waitlist-perk-status">
                   <span className="waitlist__perk-status-dot" aria-hidden="true" />
-                  <strong>{count}</strong> / {PERK_CAPACITY} founders&apos; spots claimed
-                  <span className="waitlist__perk-remaining"> · {Math.max(PERK_CAPACITY - count, 0)} left</span>
+                  <span><strong>{count}</strong>&nbsp;/&nbsp;{PERK_CAPACITY} claimed</span>
+                  <span className="waitlist__perk-remaining">· {Math.max(PERK_CAPACITY - count, 0)} left</span>
                 </p>
               </div>
             </div>
