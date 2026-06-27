@@ -19,7 +19,7 @@
 .modules__tabs {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
   width: fit-content;
   max-width: 100%;
@@ -201,6 +201,10 @@
   box-shadow: 0 6px 18px rgba(251, 113, 133, 0.4);
 }
 
+.modules__tab-label--short {
+  display: none;
+}
+
 @media (max-width: 520px) {
   .modules__tabs {
     width: 100%;
@@ -208,6 +212,12 @@
   .modules__tab {
     font-size: 0.82rem;
     padding: 10px 14px;
+  }
+  .modules__tab-label--full {
+    display: none;
+  }
+  .modules__tab-label--short {
+    display: inline;
   }
   .modules__tab-glider {
     width: calc(50% - 6px);

@@ -59,7 +59,8 @@ function Modules() {
             onClick={() => setActiveTab("phase1")}
             data-testid="modules-tab-phase1"
           >
-            Phase 1 — Basic (B2)
+            <span className="modules__tab-label modules__tab-label--full">Phase 1 — Basic (B2)</span>
+            <span className="modules__tab-label modules__tab-label--short">Phase 1 · B2</span>
           </button>
           <button
             className={`modules__tab${activeTab === "phase2" ? " active" : ""}`}
@@ -69,7 +70,8 @@ function Modules() {
             onClick={() => setActiveTab("phase2")}
             data-testid="modules-tab-phase2"
           >
-            Phase 2 — Specialised (C1)
+            <span className="modules__tab-label modules__tab-label--full">Phase 2 — Specialised (C1)</span>
+            <span className="modules__tab-label modules__tab-label--short">Phase 2 · C1</span>
           </button>
           <span className={`modules__tab-glider modules__tab-glider--${activeTab}`} aria-hidden="true" />
         </div>
