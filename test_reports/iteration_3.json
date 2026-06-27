@@ -1,0 +1,62 @@
+{
+  "summary": "Tested BUG FIX 1 (Modules tabs equal width + glider coverage) and BUG FIX 2 (Activities card equal heights) plus all regressions at 6 viewports. BUG FIX 2 fully passes. BUG FIX 1 passes at desktop/tablet (1440/1024/768) but FAILS at mobile widths (414/390/360) — Phase 1 and Phase 2 tabs are not equal width because `white-space: nowrap` makes the Phase 2 text intrinsically wider than Phase 1; `grid-template-columns: 1fr 1fr` only distributes free space and does NOT equalize columns when min-content differs. As a side effect this also causes horizontal overflow at 360px (scrollW=376 > clientW=360). All 16 prior regression tests pass.",
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Modules tabs (.modules__tabs)",
+        "issue": "At viewports <=520px (tested 414, 390, 360), the two tabs are NOT equal width. Phase 1 tab width=153-160px, Phase 2 tab width=192px (delta 32-39px, way over the 2px tolerance). The .modules__tab-glider therefore does NOT cover the active tab cleanly (e.g. at 390px on Phase 1: glider.right - tab.right = 11px overshoot; on Phase 2: tab.right - glider.right = 17px shortfall). Root cause: `grid-template-columns: 1fr 1fr` distributes only the FREE space equally; with `white-space: nowrap` on the tab buttons, each column's min-content equals its intrinsic text width, which differs between Phase 1 and Phase 2. The @media (max-width: 520px) block sets `.modules__tabs { width: 100% }` but does NOT override the columns to use `minmax(0, 1fr)` and does not allow the longer text to shrink. Suggested fix: change `grid-template-columns: 1fr 1fr` to `grid-template-columns: repeat(2, minmax(0, 1fr))` (forces equal columns) AND either shrink/wrap Phase 2 label on narrow viewports or reduce font-size further (e.g. use a shorter label like 'Phase 2 (C1)' below 520px) to prevent horizontal overflow.",
+        "selector": "[data-testid='modules-tab-phase1'], [data-testid='modules-tab-phase2'], .modules__tab-glider",
+        "priority": "HIGH"
+      },
+      {
+        "component": "Page horizontal overflow at 360px",
+        "issue": "document.documentElement.scrollWidth=376 vs clientWidth=360 — 16px horizontal scrollbar appears. Caused by the unshrinkable Phase 2 tab label inside .modules__tabs at 360px viewport. This breaks the 'no horizontal overflow at 360' regression requirement.",
+        "selector": ".modules__tabs / .modules__tab",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "regression_results": {
+    "modules_tabs_desktop_1440": "PASS (delta 0px, glider exact)",
+    "modules_tabs_desktop_1024": "PASS (delta 0px, glider exact)",
+    "modules_tabs_tablet_768": "PASS (delta 0px, glider exact)",
+    "modules_tabs_mobile_414": "FAIL — t1.w=160, t2.w=192 (delta 32px); glider 16px off active tab on each side",
+    "modules_tabs_mobile_390": "FAIL — t1.w=153, t2.w=192 (delta 39px); glider 11-17px off active tab",
+    "modules_tabs_mobile_360": "FAIL — width delta 39px; horizontal overflow 16px",
+    "activities_equal_heights_1440": "PASS — Vocabulary/Reading row both 299px (0px diff)",
+    "activities_equal_heights_820": "PASS — both row pairs 241px and 220px (0px diff)",
+    "problem_cards_1440": "PASS — 3 cards all 287px (0px diff)",
+    "team_cards_1440": "PASS — both 416px (0px diff)",
+    "modules_grid_1440": "PASS — all rows 160px (0px diff)",
+    "modules_tab_click_interaction": "PASS — Phase 2 click loads C1 modules (9 C1 badges, 9 lock overlays)",
+    "hero_order_390": "PASS — content_top=217 above visual_top=811",
+    "hero_order_820": "PASS — content_top=252 above visual_top=718",
+    "theme_toggle_localStorage": "PASS — toggles light->dark, localStorage 'medlingo-theme'='dark'",
+    "flashcard_flip": "PASS — is-flipped class toggles on click",
+    "counter_reaches_124": "PASS — '124' text found in waitlist counter",
+    "navbar_logo_square_64": "PASS — 64x64",
+    "footer_logo_square_72": "PASS — 72x72",
+    "back_to_top_fixed_bottom_right": "PASS — position:fixed bottom:28px right:28px",
+    "console_errors": "PASS — zero console errors/warnings, zero pageerrors"
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Fix .modules__tabs at viewports <=520px: change `grid-template-columns: 1fr 1fr` to `grid-template-columns: repeat(2, minmax(0, 1fr))` so columns equalize regardless of text length.",
+    "To eliminate the 360px horizontal overflow, additionally either (a) reduce .modules__tab font-size / padding further at <=400px, (b) allow tab text to wrap (remove `white-space: nowrap` at narrow widths), or (c) use a shorter label such as 'Phase 2 (C1)' below 520px.",
+    "After the fix, re-run viewport audit at 414/390/360 confirming abs(t1.width-t2.width) <=2, abs(glider.left-active.left) <=7, abs(glider.right-active.right) <=7, and scrollWidth==clientWidth."
+  ],
+  "critical_code_review_comments": [
+    "Modules.css line 22: `grid-template-columns: 1fr 1fr` is a common pitfall — does not produce equal columns when children have differing min-content widths. Prefer `repeat(2, minmax(0, 1fr))`.",
+    "Modules.css @media (max-width: 520px) {.modules__tabs { width: 100% }} forces the container to fill the viewport but does not address the underlying column-sizing pitfall; combined with `white-space: nowrap` on the tabs, this guarantees overflow once tab content exceeds 50% of viewport.",
+    "Consider extracting the equal-height stretch pattern (align-items: stretch + height: 100% on wrap/card) into a shared utility class — it is duplicated across Activities/Problem/Modules/Team CSS files (DRY violation)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (skipped per request)", "frontend": "BUG FIX 1: 50% (3 of 6 viewports pass); BUG FIX 2: 100%; Regressions: 100% (excluding the 360px overflow which is a consequence of BUG FIX 1)"},
+  "seed_data_creation": "none",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "BUG FIX 1 only succeeded for viewports >=768. The mobile-width failure is a CSS-only issue isolated to .modules__tabs at <=520px. After main agent applies the suggested fix (minmax(0,1fr) and a strategy to handle the Phase 2 label width), retest viewports 414/390/360 for: (1) abs(tab widths) <=2px, (2) glider covers active tab within 7px on BOTH Phase 1 and Phase 2 active states (click test), (3) document.documentElement.scrollWidth === clientWidth at 360. All other features remain green and do not need re-verification unless CSS is restructured.",
+  "rca_of_the_issue": "Bug: At narrow viewports the .modules__tab-glider does not cover the active tab and tabs are unequal width. Reproduction: open http://localhost:3000/ at viewport 390x844, scroll to #modules — observe Phase 2 tab is visibly wider than Phase 1; the glider pill on Phase 1 leaves Phase 2's text uncovered; clicking Phase 2 leaves the glider too short on the right. Root cause: `.modules__tabs { display: grid; grid-template-columns: 1fr 1fr }` distributes only FREE (positive) space equally; when child intrinsic widths differ (caused by `.modules__tab { white-space: nowrap }` and the Phase 2 label being longer), the columns inherit the differing min-content sizes. The glider is sized `width: calc(50% - 6px)` of the container — correct only when columns are truly equal. Mitigation: use `grid-template-columns: repeat(2, minmax(0, 1fr))` (the `minmax(0,1fr)` allows columns to shrink below content size, equalizing them) and pair with a strategy to prevent text overflow at the smallest viewports (allow wrapping, shorter label, or smaller font)."
+}
