@@ -173,11 +173,11 @@ a {
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
+  gap: 10px;
+  padding: 10px 20px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
+  font-size: 0.95rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 500;
   color: var(--accent-mint-strong);
@@ -189,11 +189,11 @@ a {
 
 .eyebrow::before {
   content: '';
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--accent-mint-strong);
-  box-shadow: 0 0 12px var(--accent-mint-strong);
+  box-shadow: 0 0 14px var(--accent-mint-strong);
   animation: pulse-dot 2s ease-in-out infinite;
 }
 
