@@ -6,11 +6,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="MedLingo — Modern AI-powered medical English learning for healthcare professionals." />
+    <meta name="theme-color" content="#FAF9F6" />
     <title>MedLingo — Medical English for Healthcare Professionals</title>
+    <script>
+      // Inline theme bootstrap to prevent flash of wrong theme
+      (function () {
+        try {
+          var stored = localStorage.getItem('medlingo-theme');
+          var theme = stored === 'dark' || stored === 'light' ? stored : 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,122 +1,140 @@
 .team {
-  padding: var(--section-py) 0;
-  background: #f0f4ff;
+  background: var(--bg-secondary);
+  position: relative;
 }
 
 .team__header {
+  margin-bottom: 56px;
   max-width: 760px;
-  margin: 0 auto 42px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.team__eyebrow {
-  color: var(--teal);
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.team__header h2 {
-  color: var(--navy);
-  font-size: 42px;
-  line-height: 1.15;
-  margin-top: 14px;
-}
+.team__title { margin: 0; }
 
 .team__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 32px;
-  max-width: 800px;
-  margin: 0 auto;
+  gap: 24px;
 }
 
 .team__card {
-  position: relative;
   padding: 36px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 360px;
+}
+
+.team__card--mint::after,
+.team__card--coral::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle at 0% 0%, var(--accent-mint-dim) 0%, transparent 50%);
+  opacity: 0.6;
+  z-index: 0;
+}
+
+.team__card--coral::after {
+  background: radial-gradient(circle at 100% 0%, var(--accent-coral-dim) 0%, transparent 50%);
+}
+
+.team__advisor-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--accent-coral-dim);
+  color: var(--accent-coral-strong);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  z-index: 2;
+  border: 1px solid var(--accent-coral-dim);
 }
 
 .team__avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
   width: 72px;
   height: 72px;
-  border-radius: 50%;
-  color: var(--white);
-  font-size: 24px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Outfit', sans-serif;
   font-weight: 700;
+  font-size: 1.6rem;
+  color: #fff;
+  flex-shrink: 0;
 }
 
-.team__avatar--founder {
-  background: var(--navy);
+.team__avatar--mint {
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+  box-shadow: 0 14px 36px rgba(20, 184, 166, 0.35);
 }
 
-.team__avatar--advisor {
-  background: var(--teal);
+.team__avatar--coral {
+  background: linear-gradient(135deg, #fb7185 0%, #f43f5e 100%);
+  box-shadow: 0 14px 36px rgba(251, 113, 133, 0.35);
 }
 
-.team__card h3 {
-  color: var(--navy);
-  font-size: 20px;
-  font-weight: 700;
-  margin-top: 22px;
+.team__avatar-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  border: 1px dashed currentColor;
+  opacity: 0.5;
+  animation: spin-slow 18s linear infinite;
 }
 
-.team__title {
-  color: var(--teal);
-  font-size: 14px;
-  margin-top: 6px;
+.team__name {
+  margin: 6px 0 0;
 }
+
+.team__role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.team__card--mint .team__role { color: var(--accent-mint-strong); }
+.team__card--coral .team__role { color: var(--accent-coral-strong); }
 
 .team__tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 18px;
 }
 
-.team__tags span {
-  border-radius: 99px;
-  background: #f0f4ff;
-  color: var(--text-muted);
-  font-size: 12px;
-  padding: 4px 10px;
+.team__tag {
+  display: inline-flex;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
 }
 
 .team__bio {
-  color: var(--text-muted);
-  font-size: 15px;
-  line-height: 1.7;
-  margin-top: 20px;
+  margin-top: 4px;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
 }
 
-.team__advisor-badge {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  border-radius: 99px;
-  background: var(--b2-bg);
-  color: var(--b2-text);
-  font-size: 12px;
-  font-weight: 700;
-  padding: 5px 10px;
-}
-
-@media (max-width: 768px) {
-  .team {
-    padding: 48px 0;
-  }
-
-  .team__header h2 {
-    font-size: 32px;
-  }
-
+@media (max-width: 860px) {
   .team__grid {
     grid-template-columns: 1fr;
   }

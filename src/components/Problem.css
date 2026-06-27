@@ -1,27 +1,17 @@
 .problem {
-  padding: var(--section-py) 0;
-  background: var(--bg);
+  background: var(--bg-primary);
 }
 
 .problem__header {
   max-width: 820px;
-  margin-bottom: 42px;
+  margin-bottom: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-.problem__eyebrow {
-  color: var(--teal);
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.problem__header h2 {
-  color: var(--navy);
-  font-size: 40px;
-  line-height: 1.15;
-  margin-top: 14px;
+.problem__title {
+  margin: 0;
 }
 
 .problem__grid {
@@ -30,49 +20,44 @@
   gap: 24px;
 }
 
-.problem__card {
-  padding: 32px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--white);
-  transition:
-    box-shadow 0.3s ease,
-    transform 0.3s ease;
+.problem__card-wrap {
+  /* wrapper exists for scroll reveal so tilt transform is not overridden */
 }
 
-.problem__card:hover {
-  box-shadow: 0 8px 30px rgba(27, 58, 107, 0.1);
-  transform: translateY(-4px);
+.problem__card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 240px;
+}
+
+.problem__icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--accent-mint-dim);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-primary);
 }
 
 .problem__icon {
-  margin-bottom: 16px;
-  font-size: 40px;
-  line-height: 1;
+  font-size: 1.6rem;
+  filter: drop-shadow(0 2px 8px rgba(20, 184, 166, 0.25));
 }
 
 .problem__card h3 {
-  color: var(--navy);
-  font-size: 18px;
-  font-weight: 600;
+  margin: 0;
 }
 
 .problem__card p {
-  color: var(--text-muted);
-  font-size: 15px;
-  line-height: 1.7;
-  margin-top: 12px;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin: 0;
 }
 
-@media (max-width: 768px) {
-  .problem {
-    padding: 48px 0;
-  }
-
-  .problem__header h2 {
-    font-size: 30px;
-  }
-
+@media (max-width: 860px) {
   .problem__grid {
     grid-template-columns: 1fr;
   }

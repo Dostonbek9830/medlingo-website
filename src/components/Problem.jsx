@@ -1,4 +1,5 @@
 import useScrollReveal from "../hooks/useScrollReveal";
+import useTilt from "../hooks/useTilt";
 import "./Problem.css";
 
 const problemCards = [
@@ -23,22 +24,22 @@ function Problem() {
   const [headerRef, headerVisible] = useScrollReveal();
 
   return (
-    <section className="problem" id="problem">
+    <section className="problem section" id="problem" data-testid="problem">
       <div className="container">
         <div
           ref={headerRef}
           className={`problem__header fade-in${headerVisible ? " visible" : ""}`}
         >
-          <p className="problem__eyebrow">The Problem</p>
-          <h2>
-            Healthcare professionals in Central Asia need clinical English — but
-            nothing exists for them
+          <p className="eyebrow">The Problem</p>
+          <h2 className="problem__title">
+            Healthcare professionals in Central Asia need clinical English —
+            but <span className="gradient-text">nothing exists for them</span>
           </h2>
         </div>
 
         <div className="problem__grid">
-          {problemCards.map((card, index) => (
-            <ProblemCard card={card} delay={index * 0.1} key={card.title} />
+          {problemCards.map((card, i) => (
+            <ProblemCard card={card} delay={i * 0.1} key={card.title} />
           ))}
         </div>
       </div>
@@ -47,20 +48,23 @@ function Problem() {
 }
 
 function ProblemCard({ card, delay }) {
-  const [cardRef, isVisible] = useScrollReveal();
+  const [revealRef, isVisible] = useScrollReveal();
+  const tiltRef = useTilt({ max: 6 });
 
   return (
-    <article
-      ref={cardRef}
-      className={`problem__card fade-in${isVisible ? " visible" : ""}`}
+    <div
+      ref={revealRef}
+      className={`problem__card-wrap fade-in${isVisible ? " visible" : ""}`}
       style={{ transitionDelay: `${delay}s` }}
     >
-      <div className="problem__icon" aria-hidden="true">
-        {card.icon}
-      </div>
-      <h3>{card.title}</h3>
-      <p>{card.text}</p>
-    </article>
+      <article ref={tiltRef} className="card problem__card" data-testid={`problem-card-${card.title.toLowerCase().replace(/\s+/g, '-')}`}>
+        <div className="problem__icon-wrap">
+          <span className="problem__icon" aria-hidden="true">{card.icon}</span>
+        </div>
+        <h3>{card.title}</h3>
+        <p>{card.text}</p>
+      </article>
+    </div>
   );
 }
 
