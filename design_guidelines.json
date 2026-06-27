@@ -1,0 +1,140 @@
+{
+  "theme_system": {
+    "strategy": "Soft & Premium — warm dark with mint/coral accents, glowing cards.",
+    "css_variables": {
+      "light": {
+        "--bg-primary": "#FAF9F6",
+        "--bg-secondary": "#F3F1EC",
+        "--bg-glass": "rgba(250, 249, 246, 0.75)",
+        "--text-primary": "#1C1917",
+        "--text-secondary": "#57534E",
+        "--accent-mint": "#2DD4BF",
+        "--accent-mint-dim": "rgba(45, 212, 191, 0.15)",
+        "--accent-coral": "#FB7185",
+        "--accent-coral-dim": "rgba(251, 113, 133, 0.15)",
+        "--border-primary": "rgba(28, 25, 23, 0.08)",
+        "--border-hover": "rgba(28, 25, 23, 0.15)",
+        "--shadow-sm": "0 2px 8px rgba(0, 0, 0, 0.04)",
+        "--shadow-glow": "0 0 20px rgba(45, 212, 191, 0.2)",
+        "--aurora-1": "#99F6E4",
+        "--aurora-2": "#FECDD3",
+        "--aurora-3": "#FEF08A"
+      },
+      "dark": {
+        "--bg-primary": "#181715",
+        "--bg-secondary": "#24221F",
+        "--bg-glass": "rgba(24, 23, 21, 0.75)",
+        "--text-primary": "#FAFAF9",
+        "--text-secondary": "#A8A29E",
+        "--accent-mint": "#5EEAD4",
+        "--accent-mint-dim": "rgba(94, 234, 212, 0.15)",
+        "--accent-coral": "#FDA4AF",
+        "--accent-coral-dim": "rgba(253, 164, 175, 0.15)",
+        "--border-primary": "rgba(250, 250, 249, 0.1)",
+        "--border-hover": "rgba(250, 250, 249, 0.2)",
+        "--shadow-sm": "0 4px 12px rgba(0, 0, 0, 0.3)",
+        "--shadow-glow": "0 0 30px rgba(94, 234, 212, 0.15)",
+        "--aurora-1": "#115E59",
+        "--aurora-2": "#881337",
+        "--aurora-3": "#78350F"
+      }
+    }
+  },
+  "typography": {
+    "google_fonts_import": "@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Outfit:wght@400;500;700&display=swap');",
+    "font_families": {
+      "heading": "'Outfit', sans-serif",
+      "body": "'Manrope', sans-serif",
+      "mono": "'JetBrains Mono', monospace"
+    },
+    "scales": {
+      "h1": { "size": "clamp(2.5rem, 5vw, 4.5rem)", "weight": "700", "line_height": "1.1", "letter_spacing": "-0.02em" },
+      "h2": { "size": "clamp(2rem, 4vw, 3rem)", "weight": "500", "line_height": "1.2", "letter_spacing": "-0.01em" },
+      "h3": { "size": "clamp(1.25rem, 2vw, 1.5rem)", "weight": "500", "line_height": "1.3", "letter_spacing": "0" },
+      "body": { "size": "1rem", "weight": "400", "line_height": "1.6", "letter_spacing": "0" },
+      "small": { "size": "0.875rem", "weight": "400", "line_height": "1.5", "letter_spacing": "0" },
+      "eyebrow": { "size": "0.75rem", "weight": "500", "line_height": "1", "letter_spacing": "0.1em", "text_transform": "uppercase" }
+    }
+  },
+  "layout_spacing": {
+    "container_max_width": "1200px",
+    "section_padding": {
+      "mobile": "4rem 1.5rem",
+      "desktop": "8rem 2rem"
+    },
+    "grid_gaps": {
+      "cards": "1.5rem",
+      "sections": "2rem"
+    },
+    "border_radius": {
+      "sm": "8px",
+      "md": "16px",
+      "lg": "24px",
+      "pill": "9999px"
+    }
+  },
+  "component_blueprints": {
+    "navbar": {
+      "behavior": "Sticky position, blurred glass on scroll (backdrop-filter: blur(12px)), shrinks vertically on scroll.",
+      "elements": "Logo, Nav Links, Theme Toggle (sun/moon morph), Magnetic CTA.",
+      "theme_toggle": "Smooth icon morph transition. Located right side before CTA."
+    },
+    "hero": {
+      "layout": "Two columns on desktop, one on mobile.",
+      "background": "Ambient CSS-only aurora gradient blobs + faint medical cross background grid (opacity: 0.03).",
+      "elements": "Kinetic eyebrow chip (pill-shape, glowing border), large editorial H1, gradient subheadline, pill-shaped primary CTA with animated sheen, secondary outline CTA.",
+      "flashcard": "3D flip flashcard with vanilla JS tilt (transform: rotateX/rotateY). Glowing mint/coral border. Subtle floating keyframe animation."
+    },
+    "cards": {
+      "types": ["Problem", "Activities", "Modules", "Team"],
+      "styling": "Background var(--bg-secondary), 1px solid var(--border-primary), border-radius: var(--border-radius-lg).",
+      "interactions": "Vanilla JS 3D tilt on mouse move. Spotlight hover effect (CSS custom properties mapped to cursor X/Y coordinates). Hover lift (transform: translateY(-4px)).",
+      "badges": "Activities 'Key Feature' badge uses a glowing pulse animation. Phase 2 Module lock overlay uses frosted glass (backdrop-filter: blur(8px)) with a lock icon.",
+      "team": "Avatar circular image, title chips in mono font, glowing subtle border on hover."
+    },
+    "waitlist_form": {
+      "styling": "Glowing card container with a subtle inner border.",
+      "interactions": "Input field features a focus ring glow (box-shadow with --accent-mint). Animated counter ticks up to 124."
+    },
+    "back_to_top": {
+      "styling": "Floating pill or circle in bottom right.",
+      "interactions": "Subtle bounce keyframe. Appears after scrolling past hero. Focus ring on keyboard navigation."
+    }
+  },
+  "animation_library": {
+    "css_animations": {
+      "aurora-shift": { "keyframes": "Translate blobs across screen", "duration": "15s", "easing": "ease-in-out", "iteration": "infinite alternate" },
+      "float": { "keyframes": "translateY(0px) to translateY(-10px)", "duration": "4s", "easing": "ease-in-out", "iteration": "infinite alternate" },
+      "pulse-glow": { "keyframes": "box-shadow opacity shifts from 0.5 to 1", "duration": "2s", "easing": "ease-in-out", "iteration": "infinite alternate" },
+      "shimmer": { "keyframes": "background-position movement for gradient text/buttons", "duration": "3s", "easing": "linear", "iteration": "infinite" }
+    },
+    "js_interactions": {
+      "card-tilt": "Vanilla JS tracking mouse event to apply max 10deg rotateX/Y to cards.",
+      "magnetic-pull": "Vanilla JS moving button centroid towards cursor within 20px radius.",
+      "spotlight-glow": "Mousemove event updating --mouse-x and --mouse-y CSS variables on the card wrapper for a radial-gradient mask."
+    },
+    "scroll_reveals": {
+      "fade-up": "opacity: 0 to 1, translateY(30px) to 0. Controlled via existing useScrollReveal hook + IntersectionObserver."
+    }
+  },
+  "iconography": {
+    "style": "Keep existing medical emoji icons (🫀, 🩺, 🏥, 🌍, 📋, 🔤, 📖, ✅, 🎧, ✏️, 🎙️, 📝).",
+    "presentation": "Size them at 2rem. Add a subtle drop-shadow to make them pop. In cards, place them in a top-left circular container with var(--bg-primary) and var(--accent-mint-dim) glow.",
+    "badges": "Use SVG icons for the 'lock' overlay and theme toggle, sized at 24x24."
+  },
+  "imagery": {
+    "guidelines": "Use existing logo and flag SVGs. Do not introduce new raster images. Rely on CSS gradients (aurora blobs), glowing borders, and the medical cross pattern for visual richness.",
+    "background_pattern": "radial-gradient(var(--border-primary) 1px, transparent 1px) with background-size of 24px 24px."
+  },
+  "dark_light_toggle": {
+    "placement": "Navbar right side, adjacent to mobile menu toggle or CTA.",
+    "icon_behavior": "Icon morphs smoothly from a sun (light mode) to a moon (dark mode) using SVG path transitions or simple rotation + scale.",
+    "color_transition": "Apply transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease to the body and universal elements to ensure smooth switching."
+  },
+  "accessibility": {
+    "contrast": "Ensure all text against --bg-primary and --bg-secondary meets WCAG AA 4.5:1 ratio in both light and dark modes.",
+    "focus_states": "All buttons, inputs, and links must have an explicit :focus-visible ring (outline: 2px solid var(--accent-mint); outline-offset: 2px).",
+    "reduced_motion": "@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } JS magnetic and tilt effects should check window.matchMedia('(prefers-reduced-motion: reduce)').matches before executing. }"
+  },
+  "approval_mockup": "In Light Mode, MedLingo feels like a premium, editorial masterclass. The background is a warm off-white, bringing a sense of calm and clarity. Subtle mint and coral gradients breathe gently behind the hero section, resembling an organic aurora. As you scroll, cards gracefully float upwards with 3D tilts reacting playfully to your mouse cursor, outlined by a faint glowing spotlight. In Dark Mode, the interface transforms into a sleek, espresso-toned command center. The mint and coral accents now glow intensely against the dark canvas, creating a cinematic 'neon in the shadows' effect. The flip-flashcard and glassmorphism elements take on a luxurious, frosted depth, offering a high-end app experience that medical professionals will trust instantly."
+}
