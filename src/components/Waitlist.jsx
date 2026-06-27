@@ -4,6 +4,8 @@ import "./Waitlist.css";
 
 const formspreeUrl = "https://formspree.io/f/mkoaqgbr";
 const TARGET_COUNT = 124;
+const PERK_CAPACITY = 200;
+const PERK_DISCOUNT = 50;
 
 function Waitlist() {
   const [email, setEmail] = useState("");
@@ -69,6 +71,38 @@ function Waitlist() {
             Join healthcare professionals from Uzbekistan, Kazakhstan, and beyond. Get early access when we launch.
           </p>
 
+          <div className="waitlist__perk" data-testid="waitlist-perk">
+            <div className="waitlist__perk-head">
+              <span className="waitlist__perk-tag" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 12V22H4V12"/><path d="M22 7H2V12H22V7Z"/><path d="M12 22V7"/><path d="M12 7H7.5C6.83696 7 6.20107 6.73661 5.73223 6.26777C5.26339 5.79893 5 5.16304 5 4.5C5 3.83696 5.26339 3.20107 5.73223 2.73223C6.20107 2.26339 6.83696 2 7.5 2C11 2 12 7 12 7Z"/><path d="M12 7H16.5C17.163 7 17.7989 6.73661 18.2678 6.26777C18.7366 5.79893 19 5.16304 19 4.5C19 3.83696 18.7366 3.20107 18.2678 2.73223C17.7989 2.26339 17.163 2 16.5 2C13 2 12 7 12 7Z"/></svg>
+              </span>
+              <div className="waitlist__perk-copy">
+                <p className="waitlist__perk-title">
+                  First <strong>{PERK_CAPACITY}</strong> get <strong>{PERK_DISCOUNT}% off</strong> at launch
+                </p>
+                <p className="waitlist__perk-sub" data-testid="waitlist-perk-status">
+                  <span className="waitlist__perk-status-dot" aria-hidden="true" />
+                  <strong>{count}</strong> / {PERK_CAPACITY} founders&apos; spots claimed
+                  <span className="waitlist__perk-remaining"> · {Math.max(PERK_CAPACITY - count, 0)} left</span>
+                </p>
+              </div>
+            </div>
+            <div
+              className="waitlist__perk-bar"
+              role="progressbar"
+              aria-label="Founder's discount capacity"
+              aria-valuemin={0}
+              aria-valuemax={PERK_CAPACITY}
+              aria-valuenow={count}
+            >
+              <span
+                className="waitlist__perk-bar-fill"
+                style={{ width: `${Math.min((count / PERK_CAPACITY) * 100, 100)}%` }}
+              />
+              <span className="waitlist__perk-bar-shine" aria-hidden="true" />
+            </div>
+          </div>
+
           {!submitted ? (
             <form
               className="waitlist__form"
@@ -114,10 +148,6 @@ function Waitlist() {
           <div className="waitlist__meta">
             <p className="waitlist__note">
               <span aria-hidden="true">🔒</span> No spam. We&apos;ll only email you when MedLingo is ready.
-            </p>
-            <p className="waitlist__counter" data-testid="waitlist-counter">
-              <span className="waitlist__counter-pulse" aria-hidden="true" />
-              <strong>{count}</strong> healthcare professionals waiting
             </p>
           </div>
         </div>
